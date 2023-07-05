@@ -1,0 +1,12 @@
+.app-header {
+    text-align: right;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    z-index: 100;
+    
+  }
+  
+  .logo{
+    height: 50px;
+  }

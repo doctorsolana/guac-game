@@ -1,0 +1,203 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10vh;
+}
+
+.avocado-amount-slider {
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+.bowl {
+  width: 100px;
+  height: 100px;
+  background-image: url("/bowl.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  pointer-events: none;
+}
+
+.avocado-container {
+  position: relative;
+  width: 15vh;
+}
+.payout-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    min-width: 100px;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+
+.cube {
+  position: absolute;
+  left: -10%;
+  top: -100%;
+  width: 120%;
+  height: 200%;
+  background-image: url("/cube.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+.avocados-container {
+  display: grid;
+  justify-items: center;
+  gap: 25px;
+  max-width: 80%;
+}
+
+.avocado {
+  width: 15vh;
+  cursor: pointer;
+}
+
+/* For 2-3 avocados, use a single column */
+.avocados-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.avocados-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.avocados-5 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* For 4-6 avocados, use two columns */
+.avocados-4,
+.avocados-6 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.shadow {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+.actionBar {
+  border: 1px solid black;
+  border-radius: 25px;
+  background: rgb(85, 26, 26);
+  padding: 20px;
+  min-width: 300px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Bungee", sans-serif;
+    border-radius: 5px;
+    margin: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+  
+    /* Add animation properties */
+    animation: pulse 2s infinite;
+  }
+  
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-family: "Bungee", sans-serif;
+  border-radius: 5px;
+  margin: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px -8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  bottom: 100%; /* Position the dropdown content above the button */
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+/* When the screen size is 600px or less, make the avocados 50% smaller */
+@media screen and (max-width: 600px) {
+  .avocado-container {
+    width: 10vh; /* 50% of the original size */
+  }
+
+  .avocado {
+    width: 10vh; /* 50% of the original size */
+  }
+}

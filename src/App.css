@@ -1,0 +1,18 @@
+/* app.css */
+
+.mainApp {
+
+ 
+}
+
+
+ .logo {
+  text-align: center;
+}
+
+
+.logoimg {
+  transform: rotate(-5deg);
+  width: 500px;
+  max-width: 80vw;
+}

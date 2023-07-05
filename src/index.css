@@ -1,0 +1,22 @@
+/* Index.css */
+@import './assets/fonts/fonts.css';
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+body {
+  font-family: 'Bungee', sans-serif;
+  color: white;
+  margin: 0;
+  background: radial-gradient(circle, rgba(184,210,93,1) 0%, rgba(119,136,59,1) 100%); /* Light avocado green to dark avocado green */
+  height: 100vh;
+  
+}
