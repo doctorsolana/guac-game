@@ -27,16 +27,15 @@
   width: 15vh;
 }
 .payout-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    min-width: 100px;
-    color: white;
-    font-size: 1.5rem;
-  }
-  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  min-width: 100px;
+  color: white;
+  font-size: 1.5rem;
+}
 
 .cube {
   position: absolute;
@@ -102,36 +101,35 @@
 }
 
 @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
   }
-  
-  .button {
-    background-color: #4caf50;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: "Bungee", sans-serif;
-    border-radius: 5px;
-    margin: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-  
-    /* Add animation properties */
-    animation: pulse 2s infinite;
+  50% {
+    transform: scale(1.1);
   }
-  
+  100% {
+    transform: scale(1);
+  }
+}
+
+.button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "Bungee", sans-serif;
+  border-radius: 5px;
+  margin: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  /* Add animation properties */
+  animation: pulse 2s infinite;
+}
 
 .button:hover {
   background-color: #3e8e41;
@@ -199,5 +197,14 @@
 
   .avocado {
     width: 10vh; /* 50% of the original size */
+  }
+
+  .button {
+    font-size: 12px;
+  }
+
+  /* Dropdown Button */
+  .dropbtn {
+    font-size: 12px;
   }
 }
