@@ -5,6 +5,38 @@ import SideInfo from "./SideInfo";
 import { useGamba } from "gamba/react";
 import { lamportsToSol, solToLamports } from "gamba";
 import { toast } from "react-toastify";
+import * as Tone from "tone";
+
+const sounds = {
+  oy: ["/sounds/oy1.mp3", "/sounds/oy2.mp3", "/sounds/oy3.mp3"],
+  scream: ["/sounds/scream1.mp3", "/sounds/scream2.mp3", "/sounds/scream3.mp3"],
+  hehe: ["/sounds/hehe1.mp3", "/sounds/hehe2.mp3", "/sounds/hehe3.mp3"],
+};
+
+let soundPlayers = {};
+
+// Create a Tone.Player for each sound file
+for (let category in sounds) {
+  soundPlayers[category] = sounds[category].map((soundPath) =>
+    new Tone.Player(soundPath).toDestination()
+  );
+}
+
+const playRandomSound = (category) => {
+  if (!soundPlayers[category])
+    throw new Error(`Category ${category} not found`);
+
+  // Choose a random sound player from the category
+  const playerIndex = Math.floor(Math.random() * soundPlayers[category].length);
+  const player = soundPlayers[category][playerIndex];
+
+  // Play the sound
+  if (player.state !== "started") {
+    player.start();
+  } else {
+    player.restart();
+  }
+};
 
 const GameState = {
   AWAITING: "AWAITING",
@@ -20,8 +52,11 @@ const Game = () => {
   const [betAmount, setBetAmount] = useState(0.1);
   const [gameResult, setGameResult] = useState(null);
   const [gameState, setGameState] = useState(GameState.AWAITING);
+  const [runOnRest, setRunOnRest] = useState(false);
 
   const gamba = useGamba();
+
+  
 
   const smashStyle = useSpring({
     from: { transform: "translate3d(0,-1000px,0)" },
@@ -30,16 +65,22 @@ const Game = () => {
     },
     config: { duration: 2000 },
     onRest: () => {
-      setIsSmashing(false);
-      if (gameResult) {
-        const win = gameResult.payout > 0;
-        setGameState(win ? GameState.WON : GameState.LOST);
-        toast(getToast(gameResult), {
-          isLoading: false,
-          draggable: true,
-          autoClose: 5000,
-          icon: win ? "🎉" : "💀",
-        });
+      if (runOnRest) {
+        setIsSmashing(false);
+        if (gameResult) {
+          const win = gameResult.payout > 0;
+          setGameState(win ? GameState.WON : GameState.LOST);
+          toast(getToast(gameResult), {
+            isLoading: false,
+            draggable: true,
+            autoClose: 5000,
+            icon: win ? "🎉" : "💀",
+          });
+          if (!win) {
+            setTimeout(() => playRandomSound("hehe"), 1000);
+          }
+        }
+        setRunOnRest(false);
       }
     },
   });
@@ -74,12 +115,8 @@ const Game = () => {
   };
 
   const handleAvocadoClick = (index) => {
+    playRandomSound("oy");
     setSelectedAvocado(selectedAvocado === index ? -1 : index);
-  };
-
-  const handleAmountChange = (e) => {
-    setAvocadoAmount(Number(e.target.value));
-    setSelectedAvocado(-1); // Reset selection when changing the amount of avocados
   };
 
   const getToast = (result) => {
@@ -105,8 +142,15 @@ const Game = () => {
     if (gameResult) {
       setIsSmashing(true);
       setGameState(GameState.SMASHING);
+      setRunOnRest(true);
     }
   }, [gameResult]);
+
+  useEffect(() => {
+    if (isSmashing) {
+      playRandomSound("scream");
+    }
+  }, [isSmashing]);
 
   const handleSmashClick = async () => {
     if (selectedAvocado >= 0) {
