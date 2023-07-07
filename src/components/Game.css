@@ -59,8 +59,14 @@
 }
 
 .avocado {
+  user-select: none;
   width: 15vh;
   cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.avocado.clicked {
+  transform: scale(1.1); /* adjust the scale as needed */
 }
 
 /* For 2-3 avocados, use a single column */

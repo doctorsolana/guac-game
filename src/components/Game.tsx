@@ -203,7 +203,7 @@ const Game = () => {
                     : "/guac-happy.png"
                 }
                 alt="avocado"
-                className="avocado"
+                className={`avocado ${selectedAvocado === index ? 'clicked' : ''}`}
               />
 
               {selectedAvocado === index && gameState === GameState.WON && (
