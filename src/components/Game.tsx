@@ -11,6 +11,8 @@ const sounds = {
   oy: ["/sounds/oy1.mp3", "/sounds/oy2.mp3", "/sounds/oy3.mp3"],
   scream: ["/sounds/scream1.mp3", "/sounds/scream2.mp3", "/sounds/scream3.mp3"],
   hehe: ["/sounds/hehe1.mp3", "/sounds/hehe2.mp3", "/sounds/hehe3.mp3"],
+  falling: ["/sounds/falling.mp3"],
+  win: ["/sounds/win1.mp3", "/sounds/win2.mp3", "/sounds/win3.mp3"],
 };
 
 let soundPlayers = {};
@@ -56,8 +58,6 @@ const Game = () => {
 
   const gamba = useGamba();
 
-  
-
   const smashStyle = useSpring({
     from: { transform: "translate3d(0,-1000px,0)" },
     to: {
@@ -76,7 +76,9 @@ const Game = () => {
             autoClose: 5000,
             icon: win ? "🎉" : "💀",
           });
-          if (!win) {
+          if (win) {
+            playRandomSound("win");
+          } else {
             setTimeout(() => playRandomSound("hehe"), 1000);
           }
         }
@@ -148,7 +150,9 @@ const Game = () => {
 
   useEffect(() => {
     if (isSmashing) {
-      playRandomSound("scream");
+      playRandomSound("falling");
+      // Delay the falling sound effect by a half second
+      setTimeout(() => playRandomSound("scream"), 500);
     }
   }, [isSmashing]);
 
